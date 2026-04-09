@@ -11,6 +11,7 @@ Valde att hämta dataset från kaggle med årsinkomster för olika yrken/klassif
 
 Källa https://www.kaggle.com/datasets/nalisha/job-salary-prediction-dataset
 
+```bash
 Column	Description
 job_title	The job role or position (e.g., Data Analyst, AI Engineer)
 experience_years	Number of years of professional experience
@@ -24,6 +25,7 @@ certifications	Number of professional certifications
 salary	Annual salary of the employee
 
 Total 250000 rader
+```
 
 Vill kunna förutsäga olika yrken årlöner genom testa olika klassifikationer
 Dataset är regression då det är salary (numerisk), salary är vårat target 
@@ -50,6 +52,11 @@ Unique values in 'job_title': <StringArray>
          'Software Engineer',     'Cybersecurity Analyst',
             'Data Scientist',            'Cloud Engineer']
 Length: 12, dtype: str 
+
+Encodas till ex. [0,1,2,3,4,5,6,7,8...]
+
+Features : 'job_title', 'education_level', 'industry','company_size', 'location', 'remote_work'
+Target : 'salary'
 
 # Steg 3: Träna en maskininlärningsmodell
 
