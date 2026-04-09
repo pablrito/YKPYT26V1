@@ -63,20 +63,34 @@ def train_model(df: pd.DataFrame) -> None:
         "display_name": "RandomForestRegressor 50 trees",
         "model": RandomForestRegressor(n_estimators=50, random_state=42),
     }]
-    
+     
+    best_model      = None
+    best_model_name = None
+    best_r2         = -1
+
     for config in model_configs:
         model = config["model"]
         model.fit(X_train, y_train)
-        predictions  = model.predict(X_test)
-        mae = mean_absolute_error(y_test, predictions )
-        r2  = r2_score(y_test, predictions )
+        predictions = model.predict(X_test)
+        mae = mean_absolute_error(y_test, predictions)
+        r2  = r2_score(y_test, predictions)
         print(f"Model: {config['display_name']}")
         print(f"MAE: ${mae:,.0f}")
         print(f"R2: {r2:.8f}")
-     
-        #joblib.dump(model, DATA_DIR / "random_forest_model.pkl")
+
+        # save best model from loop
+        if r2 > best_r2:
+            best_r2         = r2
+            best_model      = model
+            best_model_name = config['display_name']
+
         plot_data(y_test, predictions, config['display_name'])
-      
+
+    # Save best model 
+    print(f"\nBest model: {best_model_name} (R2: {best_r2:.8f})")
+    joblib.dump(best_model, DATA_DIR / "test_salary_model.pkl")
+  
+     
 def plot_data(y_test: pd.Series, predictions, model_name: str) -> None:
     plt.scatter(y_test, predictions, alpha=0.3)
     plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--')
@@ -89,7 +103,6 @@ def main():
     df = load_data("job_salary_prediction_dataset.csv")
     analyse_data(df)
     df = encode_data(df)
-    
     #df = load_data("encoded_job_salary_prediction_dataset.csv")
     train_model(df)
     

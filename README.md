@@ -2,10 +2,10 @@
 Assignment for YKPYT26V1
 
 # How to run
+```bash
 pip install -r requirements.txt
-
-./scripts/train_salary_prediction.py
-
+python .\scripts\train_salary_prediction.py
+```
 # Steg 1: Välj problem och dataset
 Valde att hämta dataset från kaggle med årsinkomster för olika yrken/klassifikationer.
 

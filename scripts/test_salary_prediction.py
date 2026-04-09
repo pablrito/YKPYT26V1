@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 
 #load
-model = joblib.load(DATA_DIR / "random_forest_model.pkl")
+model = joblib.load(DATA_DIR / "test_salary_model.pkl")
 
 #mock data for testing  
 person = pd.DataFrame([{
