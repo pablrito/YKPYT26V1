@@ -2,7 +2,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
-from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_absolute_error
 from sklearn.metrics import r2_score
@@ -37,7 +36,7 @@ def encode_data(df: pd.DataFrame) -> pd.DataFrame:
         le = LabelEncoder()
         df[col] = le.fit_transform(df[col].astype(str)) # encode text to numeric
         
-        df.to_csv(DATA_DIR /"encoded_job_salary_prediction_dataset.csv", index=False) # save encode dataset for future use
+    df.to_csv(DATA_DIR /"encoded_job_salary_prediction_dataset.csv", index=False) # save encode dataset for future use
 
     return df
 

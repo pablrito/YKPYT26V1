@@ -12,26 +12,26 @@ Valde att hämta dataset från kaggle med årsinkomster för olika yrken/klassif
 Källa https://www.kaggle.com/datasets/nalisha/job-salary-prediction-dataset
 
 ```bash
+From kaggle
+Column	Description
+job_title	The job role or position (e.g., Data Analyst, AI Engineer)
+experience_years	Number of years of professional experience
+education_level	Highest level of education completed
+skills_count	Number of technical or professional skills
+industry	Industry sector where the job belongs
+company_size	Size of the company (small, medium, large)
+location	Job location or region
+remote_work	Whether the job allows remote work
+certifications	Number of professional certifications
+salary	Annual salary of the employee
 
-job_title	yrkes roll
-experience_years yrkes år
-education_level	högsta utbildningen
-skills_count	skills 
-industry	typ av industri man jobba inom
-company_size	storlek av företaget (small, medium, large)
-location	varifrån
-remote_work	får man jobba hemma , yes/no
-certifications	antal certifikat
-salary	årslönen 
-
-Total 250000 rader
+Total 250000 row and 10 col
 ```
 
-Vill kunna förutsäga olika yrken årslöner genom testa olika klassifikationer
-Dataset är regression då det är salary (numerisk), salary är vårat target 
+Vill kunna förutsäga olika yrken årslöner genom testa olika klassifikationer, dataset är regression då det är salary (numerisk), salary är vårat target 
 
 # Steg 2: Förberedelse av data
-Dataset ser fint ut, inga saknade värden, dock så måste kategorierna göras till numeriska värden.
+Dataset ser bra ut (kanske för bra), inga saknade värden, dock så måste kategorierna göras till numeriska värden.
 
 Om det saknas värdern så kunde vi antigen tagit bort de raderna eller använd fill in metoden
 
@@ -86,12 +86,14 @@ R2: 0.96929295
 MAE genomsnittet hur mycket fel i dollars har den 
 R2 hur mycket variation , mellan 0-1 , 1 är bäst
 
-Valde gå vidare med RandomForestRegressor 200 trees 
+Datasetet är inte linjärt , lönen o erfarenheten ökar inte linjert , först året kanske du får en höjning men nästa år kanske det är tredubbla , men tredje är det samma ökning som första året etc.
+
+Valde gå vidare med RandomForestRegressor har bästa värderna
 
 Har en graf i output som visar resultat, ju närmar linjen plupparna är desto bättre
 
 # Steg 4: Utvärdera modellen
-Sparade ner RandomForestRegressor modellen men det är ca 800M så jag simulerar istället att förutsäga vilken lön ett yrke med olika kategorier, dels att söka i datasetet o sedan att använda modellen men en dummy person.
+Sparade ner RandomForestRegressor modellen men det är ca 1 G stor så jag simulerar istället att förutsäga vilken lön ett yrke med olika kategorier, dels att söka i datasetet o sedan att använda modellen men en dummy person.
 
 ```bash
 python ./scripts/test_salary_prediction.py    
@@ -107,9 +109,5 @@ person = pd.DataFrame([{
     'remote_work'     : 2,   
     'certifications'  : 2
 }])
-#en person som jobbar med Machine Learning Engineer, 5 år erfaranhet , Master..
-
-Predicted salary: $131,735
-Similar salaries range: $61,457 - $218,844
-Similar avg salaries  : $130,340
+#en person som jobbar med Machine Learning Engineer, 5 år erfaranhet , Master
 ```
