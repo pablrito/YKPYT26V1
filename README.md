@@ -101,13 +101,18 @@ python ./scripts/test_salary_prediction.py
 person = pd.DataFrame([{
     'job_title'       : 0,   
     'experience_years': 5,
-    'education_level' : 5,   
-    'skills_count'    : 8,
-    'industry'        : 8,   
+    'education_level' : 4,    
+    'skills_count'    : 12,
+    'industry'        : 9,   
     'company_size'    : 2,   
     'location'        : 7,   
     'remote_work'     : 2,   
     'certifications'  : 2
 }])
 #en person som jobbar med Machine Learning Engineer, 5 år erfaranhet , Master
+
+Predicted salary: $170,787
+Similar salaries range: $70,328 - $277,135
+Similar avg salaries  : $160,661
+
 ```

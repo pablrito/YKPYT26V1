@@ -59,5 +59,5 @@ filtered = df[
 ]
 
 salary_highest = filtered.loc[filtered['salary'].idxmax()]
-print(salary_highest) # Name: 135581, dtype: int64 , row with highest salary with similar job 
+#print(salary_highest) # Name: 135581, dtype: int64 , row with highest salary with similar job 
 #AI Engineer,5,PhD,12,Telecom,Enterprise,USA,Hybrid,5,277135
