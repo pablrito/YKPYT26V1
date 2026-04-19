@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 from pathlib import Path
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import  mean_absolute_error, r2_score
@@ -59,5 +60,14 @@ filtered = df[
 ]
 
 salary_highest = filtered.loc[filtered['salary'].idxmax()]
-#print(salary_highest) # Name: 135581, dtype: int64 , row with highest salary with similar job 
+#print(salary_highest) # Person with highest salary
 #AI Engineer,5,PhD,12,Telecom,Enterprise,USA,Hybrid,5,277135
+
+# ploy experience in years to salary , alpha is points of transparance in grqph,
+plt.scatter(df['experience_years'], df['salary'], alpha=0.5)
+plt.xlabel('Experience in years ')
+plt.ylabel('Salary ($)')
+plt.title('Experience vs Salary')
+plt.show()
+
+
