@@ -60,8 +60,13 @@ filtered = df[
 ]
 
 salary_highest = filtered.loc[filtered['salary'].idxmax()]
-#print(salary_highest) # Person with highest salary
-#AI Engineer,5,PhD,12,Telecom,Enterprise,USA,Hybrid,5,277135
+print(salary_highest) # Person with highest salary
+
+importances = pd.Series(
+    model.feature_importances_,
+    index=X.columns
+).sort_values(ascending=False)
+print(importances.round(2))
 
 # ploy experience in years to salary , alpha is points of transparance in grqph,
 plt.scatter(df['experience_years'], df['salary'], alpha=0.5)

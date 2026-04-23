@@ -95,6 +95,18 @@ Har en graf i output som visar resultat, ju närmar linjen plupparna är desto b
 # Steg 4: Utvärdera modellen
 Sparade ner RandomForestRegressor modellen men det är ca 1 G stor så jag simulerar istället att förutsäga vilken lön ett yrke med olika kategorier, dels att söka i datasetet o sedan att använda modellen men en dummy person.
 
+Dessa features viktar av modellens beslut
+location            0.33
+experience_years    0.20
+company_size        0.17
+job_title           0.16
+education_level     0.10
+skills_count        0.03
+certifications      0.01
+industry            0.01
+remote_work         0.01
+
+
 ```bash
 python ./scripts/test_salary_prediction.py    
 
